@@ -1,12 +1,14 @@
-package org.popcorntech.GroceryOrderSystem.ejb;
+package org.popcorntech.GroceryOrderSystem.beans;
 
+import jakarta.ejb.Stateless;
 import org.hibernate.Session;
 import org.popcorntech.GroceryOrderSystem.entities.User;
 import org.popcorntech.GroceryOrderSystem.util.HibernateUtil;
 
+@Stateless
 public class UserServiceBean {
 
-    public User registerUser(String email, String password) {
+    public User registerUser(String fullName,String email, String password) {
 
         Session session = null;
 
@@ -14,14 +16,18 @@ public class UserServiceBean {
             session = HibernateUtil.getSessionFactory().openSession();
 
             User newUser = new User();
-
             newUser.setEmail(email);
+            newUser.setPassword(password);
+            newUser.setFull_name(fullName);
+
+            session.save(newUser);
             session.beginTransaction().commit();
 
             return newUser;
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return null;
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
