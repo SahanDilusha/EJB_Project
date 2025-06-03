@@ -8,7 +8,7 @@ import org.popcorntech.GroceryOrderSystem.util.HibernateUtil;
 @Stateless
 public class UserServiceBean {
 
-    public User registerUser(String fullName,String email, String password) {
+    public User registerUser(String fullName, String email, String password) {
 
         Session session = null;
 
@@ -35,5 +35,29 @@ public class UserServiceBean {
         }
 
     }
+
+    public User loginUser(String email) {
+        Session session = null;
+
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+
+            User user = session.createQuery(
+                            "FROM User WHERE email = :email", User.class)
+                    .setParameter("email", email)
+                    .uniqueResult();
+
+            return user;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+    }
+
 
 }
