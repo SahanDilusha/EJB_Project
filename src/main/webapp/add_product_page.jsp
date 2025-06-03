@@ -29,7 +29,7 @@
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="price" class="form-label">Price ($)</label>
+                        <label for="price" class="form-label">Base Price ($)</label>
                         <input type="number" class="form-control" id="price" placeholder="Enter price">
                     </div>
                     <div class="col-md-6 mb-3">
@@ -42,10 +42,9 @@
                     <label for="category" class="form-label">Category</label>
                     <select class="form-select" id="category">
                         <option selected disabled>Select category</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="clothing">Clothing</option>
-                        <option value="books">Books</option>
-                        <option value="furniture">Furniture</option>
+                        <option value="1">Electronics</option>
+                        <option value="2">Clothing</option>
+                        <option value="3">Books</option>
                     </select>
                 </div>
 
@@ -54,7 +53,7 @@
                     <input class="form-control" type="file" id="productImage">
                 </div>
 
-                <button type="submit" class="btn btn-success">Add Product</button>
+                <button type="button" class="btn btn-success" id="addProductBTN">Add Product</button>
             </form>
         </div>
     </div>
@@ -62,5 +61,6 @@
 
 <!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/add_product.js"></script>
 </body>
 </html>
