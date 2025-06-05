@@ -58,8 +58,6 @@ public class NewBidController extends HttpServlet {
 
             jsonObject.addProperty("status", true);
 
-            jsonObject.addProperty("message", bid.getId());
-
             bidService.notify("Bid on Item " + product.getName() + " with amount $" + BigDecimal.valueOf(bid.getPrice()).setScale(2));
 
         } catch (Exception e) {

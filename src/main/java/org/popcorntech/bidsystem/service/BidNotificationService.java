@@ -6,6 +6,7 @@ import jakarta.jms.ConnectionFactory;
 import jakarta.jms.JMSContext;
 import jakarta.jms.Queue;
 import jakarta.jms.TextMessage;
+import org.popcorntech.bidsystem.websocket.BidUpdateWebSocket;
 
 @Stateless
 public class BidNotificationService {
@@ -26,6 +27,7 @@ public class BidNotificationService {
             context.createProducer().send(queue, textMessage);
 
             System.out.println("Message sent");
+
 
         } catch (Exception e) {
             e.printStackTrace();
