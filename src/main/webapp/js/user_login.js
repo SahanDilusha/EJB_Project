@@ -3,8 +3,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     document.getElementById("loginBTN").onclick = async () => {
 
-        alert("1");
-
         try {
 
             const response = await fetch("/GroceryOrderSystem/userLogin", {

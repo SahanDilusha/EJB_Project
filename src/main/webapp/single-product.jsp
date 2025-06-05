@@ -1,4 +1,4 @@
-<%@ page import="org.popcorntech.bidsystem.entities.Product" %>
+<%@ page import="com.popcorntech.bidsystem.entities.Product" %>
 
 <%
     Product product = (Product) request.getAttribute("product");
