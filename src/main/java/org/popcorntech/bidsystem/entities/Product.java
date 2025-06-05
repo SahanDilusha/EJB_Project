@@ -1,4 +1,4 @@
-package org.popcorntech.GroceryOrderSystem.entities;
+package org.popcorntech.bidsystem.entities;
 
 import jakarta.persistence.*;
 
@@ -28,7 +28,20 @@ public class Product implements Serializable {
     @ManyToOne
     private ProductCategory productCategory;
 
+    @JoinColumn(name = "bid_status_id", nullable = false)
+    @ManyToOne
+    private BidStatus bidStatus;
+
     public Product() {
+    }
+
+    public BidStatus getBidStatus() {
+        return bidStatus;
+    }
+
+    public Product setBidStatus(BidStatus bidStatus) {
+        this.bidStatus = bidStatus;
+        return this;
     }
 
     public int getId() {

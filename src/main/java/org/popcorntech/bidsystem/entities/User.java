@@ -1,4 +1,4 @@
-package org.popcorntech.GroceryOrderSystem.entities;
+package org.popcorntech.bidsystem.entities;
 
 import jakarta.persistence.*;
 

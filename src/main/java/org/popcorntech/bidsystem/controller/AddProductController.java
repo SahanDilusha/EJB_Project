@@ -1,4 +1,4 @@
-package org.popcorntech.GroceryOrderSystem.controller;
+package org.popcorntech.bidsystem.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -9,9 +9,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.popcorntech.GroceryOrderSystem.beans.ProductCategoryServiceBean;
-import org.popcorntech.GroceryOrderSystem.beans.ProductsServiceBean;
-import org.popcorntech.GroceryOrderSystem.entities.ProductCategory;
+import org.popcorntech.bidsystem.beans.BidStatusServiceBean;
+import org.popcorntech.bidsystem.beans.ProductCategoryServiceBean;
+import org.popcorntech.bidsystem.beans.ProductsServiceBean;
+import org.popcorntech.bidsystem.entities.BidStatus;
+import org.popcorntech.bidsystem.entities.ProductCategory;
 import java.io.IOException;
 
 @WebServlet("/addProduct")
@@ -22,6 +24,8 @@ public class AddProductController extends HttpServlet {
     ProductsServiceBean productsServiceBean;
     @EJB
     ProductCategoryServiceBean productCategoryServiceBean;
+    @EJB
+    BidStatusServiceBean bidStatusServiceBean;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,12 +44,25 @@ public class AddProductController extends HttpServlet {
             double price = req.getParameter("price").isEmpty() ? 0.00 : Double.parseDouble(req.getParameter("price"));
             int quantity = req.getParameter("quantity").isEmpty() ? 0 : Integer.parseInt(req.getParameter("quantity"));
 
-            ProductCategory productCategory = productCategoryServiceBean.getProductCategory(1);
+            if (name.isEmpty()){
+                jsonObject.addProperty("message", "Name is required");
+            } else if (description.isEmpty()) {
+                jsonObject.addProperty("message", "Description is required");
+            } else if (category <= 0) {
+                jsonObject.addProperty("message", "Category is required");
+            } else if (price <= 0) {
+                jsonObject.addProperty("message", "Price is required");
+            } else if (quantity <= 0) {
+                jsonObject.addProperty("message", "Quantity is required");
+            }else {
+                ProductCategory productCategory = productCategoryServiceBean.getProductCategory(category);
 
-            productsServiceBean.registerProduct(name,description,price,productCategory,quantity);
+                BidStatus bidStatus = bidStatusServiceBean.getProductCategory(1);
 
-            jsonObject.addProperty("status", true);
+                productsServiceBean.registerProduct(name,description,price,productCategory,quantity,bidStatus);
 
+                jsonObject.addProperty("status", true);
+            }
 
         }catch (Exception e) {
             e.printStackTrace();

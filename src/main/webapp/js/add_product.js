@@ -24,6 +24,10 @@ document.addEventListener("DOMContentLoaded",()=>{
 
             if (result.status) {
                 alert("ok");
+                document.getElementById("productName").value = "";
+                document.getElementById("productDescription").value = "";
+                document.getElementById("productPrice").value = "";
+                document.getElementById("productDescription").value = "";
             } else {
                 alert(result.message);
             }

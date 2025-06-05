@@ -1,27 +1,27 @@
-package org.popcorntech.GroceryOrderSystem.entities;
+package org.popcorntech.bidsystem.entities;
 
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 
 @Entity
-@Table(name = "product_categorys")
-public class ProductCategory implements Serializable {
+@Table(name = "bid_status")
+public class BidStatus implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "name",length = 50, nullable = false)
+    @Column(name = "name",length = 20, nullable = false)
     private String name;
 
-    public ProductCategory() {
+    public BidStatus() {
     }
 
     public int getId() {
         return id;
     }
 
-    public ProductCategory setId(int id) {
+    public BidStatus setId(int id) {
         this.id = id;
         return this;
     }
@@ -30,7 +30,7 @@ public class ProductCategory implements Serializable {
         return name;
     }
 
-    public ProductCategory setName(String name) {
+    public BidStatus setName(String name) {
         this.name = name;
         return this;
     }

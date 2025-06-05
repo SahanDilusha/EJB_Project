@@ -1,4 +1,4 @@
-package org.popcorntech.GroceryOrderSystem.controller;
+package org.popcorntech.bidsystem.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -8,16 +8,18 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.popcorntech.GroceryOrderSystem.beans.UserServiceBean;
-import org.popcorntech.GroceryOrderSystem.models.Validation;
+import org.popcorntech.bidsystem.beans.UserServiceBean;
+import org.popcorntech.bidsystem.entities.User;
+import org.popcorntech.bidsystem.models.Validation;
 
 import java.io.IOException;
 
-@WebServlet("/register")
-public class UserRegisterController extends HttpServlet {
+@WebServlet("/userLogin")
+public class UserLoginController extends HttpServlet {
 
     @EJB
     private UserServiceBean userServiceBean;
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,15 +37,10 @@ public class UserRegisterController extends HttpServlet {
                 jsonObject.addProperty("message", "Invalid data");
             }else {
 
-                String fullName = data.get("fullName").isJsonNull()?null:data.get("fullName").getAsString();
                 String password = data.get("password").isJsonNull()?null:data.get("password").getAsString();
                 String email = data.get("email").isJsonNull()?null:data.get("email").getAsString();
 
-                if (fullName.isEmpty()) {
-                    jsonObject.addProperty("message", "Invalid full name");
-                } else if (fullName.length() > 60) {
-                    jsonObject.addProperty("message", "Invalid full name");
-                }  else if (email.isEmpty()) {
+               if (email.isEmpty()) {
                     jsonObject.addProperty("message", "Invalid email");
                 } else if (email.length() > 100) {
                     jsonObject.addProperty("message", "Invalid email");
@@ -54,8 +51,24 @@ public class UserRegisterController extends HttpServlet {
                 } else if (!Validation.getInstance().validatePassword(password)) {
                     jsonObject.addProperty("message", "Invalid password");
                 }else {
-                    userServiceBean.registerUser(fullName, email, Validation.getInstance().hashPassword(password));
-                    jsonObject.addProperty("status", true);
+
+                    User user = userServiceBean.loginUser(email);
+
+                    if (user != null) {
+
+                        if (!Validation.getInstance().checkPassword(password, user.getPassword())) {
+                            jsonObject.addProperty("message", "Invalid email or password!");
+                        }else {
+
+                            req.getSession().setAttribute("user", user);
+
+                            jsonObject.addProperty("status", true);
+                        }
+
+                    }else {
+                        jsonObject.addProperty("message", "Invalid email or password!");
+                    }
+
                 }
 
             }

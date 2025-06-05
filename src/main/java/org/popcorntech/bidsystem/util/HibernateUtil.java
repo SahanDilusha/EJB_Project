@@ -1,4 +1,4 @@
-package org.popcorntech.GroceryOrderSystem.util;
+package org.popcorntech.bidsystem.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

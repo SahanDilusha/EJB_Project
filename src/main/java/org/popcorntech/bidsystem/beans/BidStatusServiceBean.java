@@ -1,29 +1,27 @@
-package org.popcorntech.GroceryOrderSystem.beans;
+package org.popcorntech.bidsystem.beans;
 
 import jakarta.ejb.Stateless;
 import org.hibernate.Session;
-import org.popcorntech.GroceryOrderSystem.entities.User;
-import org.popcorntech.GroceryOrderSystem.util.HibernateUtil;
+import org.popcorntech.bidsystem.entities.BidStatus;
+import org.popcorntech.bidsystem.util.HibernateUtil;
 
 @Stateless
-public class UserServiceBean {
+public class BidStatusServiceBean {
 
-    public User registerUser(String fullName, String email, String password) {
+    public BidStatus registerBidStatus(String name) {
 
         Session session = null;
 
         try {
             session = HibernateUtil.getSessionFactory().openSession();
 
-            User newUser = new User();
-            newUser.setEmail(email);
-            newUser.setPassword(password);
-            newUser.setFull_name(fullName);
+            BidStatus bidStatus = new BidStatus();
+            bidStatus.setName(name);
 
-            session.save(newUser);
+            int id = (int) session.save(bidStatus);
             session.beginTransaction().commit();
-
-            return newUser;
+            bidStatus.setId(id);
+            return bidStatus;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,18 +34,13 @@ public class UserServiceBean {
 
     }
 
-    public User loginUser(String email) {
+    public BidStatus getProductCategory(int id) {
         Session session = null;
 
         try {
             session = HibernateUtil.getSessionFactory().openSession();
 
-            User user = session.createQuery(
-                            "FROM User WHERE email = :email", User.class)
-                    .setParameter("email", email)
-                    .uniqueResult();
-
-            return user;
+            return session.get(BidStatus.class, id);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,6 +50,7 @@ public class UserServiceBean {
                 session.close();
             }
         }
+
     }
 
 

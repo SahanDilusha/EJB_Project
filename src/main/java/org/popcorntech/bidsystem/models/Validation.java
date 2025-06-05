@@ -1,4 +1,4 @@
-package org.popcorntech.GroceryOrderSystem.models;
+package org.popcorntech.bidsystem.models;
 
 import java.security.SecureRandom;
 import java.util.regex.Pattern;

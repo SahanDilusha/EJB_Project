@@ -1,10 +1,9 @@
-package org.popcorntech.GroceryOrderSystem.beans;
+package org.popcorntech.bidsystem.beans;
 
 import jakarta.ejb.Stateless;
 import org.hibernate.Session;
-import org.popcorntech.GroceryOrderSystem.entities.ProductCategory;
-import org.popcorntech.GroceryOrderSystem.entities.User;
-import org.popcorntech.GroceryOrderSystem.util.HibernateUtil;
+import org.popcorntech.bidsystem.entities.ProductCategory;
+import org.popcorntech.bidsystem.util.HibernateUtil;
 
 @Stateless
 public class ProductCategoryServiceBean {
