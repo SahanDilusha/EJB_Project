@@ -1,10 +1,7 @@
-
 document.addEventListener("DOMContentLoaded",()=>{
     document.getElementById("userRegisterBTN").onclick = async () => {
-
         try {
-
-            const response = await fetch("/GroceryOrderSystem/register", {
+            const response = await fetch("/bidsystem/register", {
                 method: "POST",
                 body: JSON.stringify({
                     email:document.getElementById("email").value,
@@ -15,17 +12,13 @@ document.addEventListener("DOMContentLoaded",()=>{
                     "Content-Type": "application/json",
                 },
             });
-
             const result = await response.json();
-
             console.log(result);
-
             if (result.status) {
                 window.location.replace("/GroceryOrderSystem/login");
             } else {
                 alert(result.message);
             }
-
         } catch (e) {
             console.error("Registration error:", e);
             alert("Something went wrong!");

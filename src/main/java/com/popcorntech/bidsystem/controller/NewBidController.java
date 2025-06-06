@@ -17,7 +17,7 @@ import com.popcorntech.bidsystem.entities.Bid;
 import com.popcorntech.bidsystem.entities.BidStatus;
 import com.popcorntech.bidsystem.entities.Product;
 import com.popcorntech.bidsystem.entities.User;
-import com.popcorntech.bidsystem.service.BidNotificationService;
+import com.popcorntech.bidsystem.service.AdminBidNotificationService;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -35,7 +35,7 @@ public class NewBidController extends HttpServlet {
     BidServiceBean bidServiceBean;
 
     @Inject
-    private BidNotificationService bidService;
+    private AdminBidNotificationService bidService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

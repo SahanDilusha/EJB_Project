@@ -8,7 +8,7 @@ import jakarta.jms.Queue;
 import jakarta.jms.TextMessage;
 
 @Singleton
-public class BidNotificationService {
+public class AdminBidNotificationService {
 
     @Resource(lookup = "jms/BidConnectionFactory")
     private ConnectionFactory connectionFactory;
@@ -17,22 +17,14 @@ public class BidNotificationService {
     private Queue queue;
 
     public void notify(String message) {
-
         try{
             JMSContext context = connectionFactory.createContext();
-
             TextMessage textMessage = context.createTextMessage(message);
-
             context.createProducer().send(queue, textMessage);
-
             System.out.println("Message sent");
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
 
 }

@@ -19,7 +19,7 @@ public class BidListener implements MessageListener {
             if (message instanceof TextMessage) {
                 String bidUpdate = ((TextMessage) message).getText();
                 BidUpdateWebSocket.broadcast(bidUpdate);
-                System.out.println("JMS Consumer received bid: " + bidUpdate);
+                System.out.println("Received bid: " + bidUpdate);
             }
         } catch (JMSException e) {
             e.printStackTrace();

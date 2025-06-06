@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
         try {
 
-            const response = await fetch("/GroceryOrderSystem/addProduct", {
+            const response = await fetch("/bidsystem/addProduct", {
                 method: "POST",
                 body:form,
             });

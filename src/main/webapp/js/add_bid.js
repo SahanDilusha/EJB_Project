@@ -2,7 +2,7 @@ async function addBid(id) {
 
     try {
 
-        const response = await fetch("/GroceryOrderSystem/addBid", {
+        const response = await fetch("/bidsystem/addBid", {
             method: "POST",
             body: JSON.stringify({
                 prodctId: id,
