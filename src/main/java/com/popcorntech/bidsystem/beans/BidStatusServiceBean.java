@@ -9,20 +9,15 @@ import com.popcorntech.bidsystem.util.HibernateUtil;
 public class BidStatusServiceBean {
 
     public BidStatus registerBidStatus(String name) {
-
         Session session = null;
-
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-
             BidStatus bidStatus = new BidStatus();
             bidStatus.setName(name);
-
             int id = (int) session.save(bidStatus);
             session.beginTransaction().commit();
             bidStatus.setId(id);
             return bidStatus;
-
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -31,10 +26,9 @@ public class BidStatusServiceBean {
                 session.close();
             }
         }
-
     }
 
-    public BidStatus getProductCategory(int id) {
+    public BidStatus getById(int id) {
         Session session = null;
 
         try {

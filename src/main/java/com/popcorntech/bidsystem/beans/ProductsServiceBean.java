@@ -11,12 +11,9 @@ import com.popcorntech.bidsystem.util.HibernateUtil;
 public class ProductsServiceBean {
 
     public Product registerProduct(String productName, String productDescription, double basePrice, ProductCategory productCategory, int quantity, BidStatus bidStatus) {
-
         Session session = null;
-
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-
             Product product = new Product();
             product.setName(productName);
             product.setDescription(productDescription);
@@ -24,15 +21,10 @@ public class ProductsServiceBean {
             product.setProductCategory(productCategory);
             product.setQuantity(quantity);
             product.setBidStatus(bidStatus);
-
-
             int id = (int) session.save(product);
             session.beginTransaction().commit();
-
             product.setId(id);
-
             return product;
-
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -41,18 +33,13 @@ public class ProductsServiceBean {
                 session.close();
             }
         }
-
     }
 
     public Product getById(int id) {
-
         Session session = null;
-
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-
             return session.get(Product.class, id);
-
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -61,8 +48,5 @@ public class ProductsServiceBean {
                 session.close();
             }
         }
-
     }
-
-
 }

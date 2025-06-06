@@ -57,7 +57,7 @@ public class AddProductController extends HttpServlet {
             }else {
                 ProductCategory productCategory = productCategoryServiceBean.getProductCategory(category);
 
-                BidStatus bidStatus = bidStatusServiceBean.getProductCategory(1);
+                BidStatus bidStatus = bidStatusServiceBean.getById(1);
 
                 productsServiceBean.registerProduct(name,description,price,productCategory,quantity,bidStatus);
 

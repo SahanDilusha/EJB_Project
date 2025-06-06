@@ -51,7 +51,7 @@ public class NewBidController extends HttpServlet {
             JsonObject bidJson = gson.fromJson(req.getReader(), JsonObject.class);
 
             User user = userServiceBean.getById(26);
-            BidStatus bidStatus = bidStatusServiceBean.getProductCategory(3);
+            BidStatus bidStatus = bidStatusServiceBean.getById(3);
             Product product = productsServiceBean.getById(bidJson.get("prodctId").getAsInt());
 
             Bid bid = bidServiceBean.addBid(user, product, bidStatus, bidJson.get("price").getAsDouble());

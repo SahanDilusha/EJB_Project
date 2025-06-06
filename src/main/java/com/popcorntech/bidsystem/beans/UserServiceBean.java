@@ -11,20 +11,15 @@ public class UserServiceBean {
     public User registerUser(String fullName, String email, String password) {
 
         Session session = null;
-
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-
             User newUser = new User();
             newUser.setEmail(email);
             newUser.setPassword(password);
             newUser.setFull_name(fullName);
-
             session.save(newUser);
             session.beginTransaction().commit();
-
             return newUser;
-
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -33,7 +28,6 @@ public class UserServiceBean {
                 session.close();
             }
         }
-
     }
 
     public User loginUser(String email) {
