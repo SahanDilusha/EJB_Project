@@ -11,7 +11,7 @@ import com.popcorntech.bidsystem.websocket.BidUpdateWebSocket;
                 @ActivationConfigProperty(propertyName = "destinationLookup", propertyValue = "jms/BidQueue")
         }
 )
-public class BidListener implements MessageListener {
+public class BidListenerAdmin implements MessageListener {
 
     @Override
     public void onMessage(Message message) {
