@@ -1,4 +1,4 @@
-package com.popcorntech.bidsystem.controller;
+package com.bid.bidsystem.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -9,11 +9,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import com.popcorntech.bidsystem.beans.BidStatusServiceBean;
-import com.popcorntech.bidsystem.beans.ProductCategoryServiceBean;
-import com.popcorntech.bidsystem.beans.ProductsServiceBean;
-import com.popcorntech.bidsystem.entities.BidStatus;
-import com.popcorntech.bidsystem.entities.ProductCategory;
+import com.bid.bidsystem.beans.BidStatusServiceBean;
+import com.bid.bidsystem.beans.ProductCategoryServiceBean;
+import com.bid.bidsystem.beans.ProductsServiceBean;
+import com.bid.bidsystem.entities.BidStatus;
+import com.bid.bidsystem.entities.ProductCategory;
 import java.io.IOException;
 
 @WebServlet("/addProduct")

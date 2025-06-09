@@ -1,4 +1,4 @@
-package com.popcorntech.bidsystem.controller;
+package com.bid.bidsystem.controller;
 
 import jakarta.ejb.EJB;
 import jakarta.servlet.RequestDispatcher;
@@ -7,8 +7,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import com.popcorntech.bidsystem.beans.ProductsServiceBean;
-import com.popcorntech.bidsystem.entities.Product;
+import com.bid.bidsystem.beans.ProductsServiceBean;
+import com.bid.bidsystem.entities.Product;
 import java.io.IOException;
 
 @WebServlet("/product-details")
@@ -37,10 +37,5 @@ public class ProductDetailsController extends HttpServlet {
                 e.printStackTrace();
             }
         }
-
-
-
-
     }
-
 }

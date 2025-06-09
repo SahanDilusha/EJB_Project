@@ -1,50 +1,44 @@
-package com.popcorntech.bidsystem.controller;
+package com.bid.bidsystem.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.bid.bidsystem.sessions.UserSessionBean;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import com.popcorntech.bidsystem.beans.UserServiceBean;
-
-
+import com.bid.bidsystem.beans.UserServiceBean;
+import com.bid.bidsystem.entities.User;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
-@WebServlet("/register")
-public class UserRegisterController extends HttpServlet {
+@WebServlet("/userLogin")
+public class UserLoginController extends HttpServlet {
 
     @EJB
     private UserServiceBean userServiceBean;
+
+    @EJB
+    private UserSessionBean userSessionBean;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         Gson gson = new Gson();
-
         JsonObject jsonObject = new JsonObject();
-
         jsonObject.addProperty("status", false);
 
         try {
             JsonObject data= gson.fromJson(req.getReader(), JsonObject.class);
-
             if (data == null) {
                 jsonObject.addProperty("message", "Invalid data");
             }else {
+                String password = data.get("password").isJsonNull()?null:data.get("password").getAsString();
+                String email = data.get("email").isJsonNull()?null:data.get("email").getAsString();
 
-                String fullName = data.get("fullName").getAsString();
-                String password = data.get("password").getAsString();
-                String email = data.get("email").getAsString();
-
-                if (fullName.isEmpty()) {
-                    jsonObject.addProperty("message", "Invalid full name");
-                } else if (fullName.length() > 60) {
-                    jsonObject.addProperty("message", "Invalid full name");
-                }  else if (email.isEmpty()) {
+               if (email.isEmpty()) {
                     jsonObject.addProperty("message", "Invalid email");
                 } else if (email.length() > 100) {
                     jsonObject.addProperty("message", "Invalid email");
@@ -52,22 +46,26 @@ public class UserRegisterController extends HttpServlet {
                     jsonObject.addProperty("message", "Invalid email");
                 } else if (password.isEmpty()) {
                     jsonObject.addProperty("message", "Invalid password");
-                } else if (Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{8,50}$").matcher(password).find()) {
+                } else if (!Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$").matcher(email).find()) {
                     jsonObject.addProperty("message", "Invalid password");
                 }else {
-                    userServiceBean.registerUser(fullName, email, password);
-                    jsonObject.addProperty("status", true);
+                    User user = userServiceBean.loginUser(email,password);
+                    if (user != null) {
+
+                            req.getSession().setAttribute("user", user);
+                            userSessionBean.setUser(user);
+                            jsonObject.addProperty("status", true);
+                    }else {
+                        jsonObject.addProperty("message", "Invalid email or password!");
+                    }
                 }
 
             }
-
         }catch (Exception e) {
             e.printStackTrace();
             jsonObject.addProperty("message", "Error registering!"+e.getLocalizedMessage());
         }
-
         resp.setContentType("application/json");
         resp.getWriter().write(jsonObject.toString());
-
     }
 }

@@ -1,13 +1,13 @@
-package com.popcorntech.bidsystem.beans;
+package com.bid.bidsystem.beans;
 
-import com.popcorntech.bidsystem.entities.Bid;
-import com.popcorntech.bidsystem.entities.BidStatus;
-import com.popcorntech.bidsystem.entities.Product;
-import com.popcorntech.bidsystem.entities.User;
+import com.bid.bidsystem.entities.Bid;
+import com.bid.bidsystem.entities.BidStatus;
+import com.bid.bidsystem.entities.Product;
+import com.bid.bidsystem.entities.User;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import org.hibernate.Session;
-import com.popcorntech.bidsystem.util.HibernateUtil;
+import com.bid.bidsystem.util.HibernateUtil;
 
 @Stateless
 public class BidServiceBean {

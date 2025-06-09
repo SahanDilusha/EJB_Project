@@ -1,4 +1,4 @@
-package com.popcorntech.bidsystem.service;
+package com.bid.bidsystem.service;
 
 import jakarta.annotation.Resource;
 import jakarta.ejb.Singleton;
@@ -26,5 +26,4 @@ public class AdminBidNotificationService {
             e.printStackTrace();
         }
     }
-
 }

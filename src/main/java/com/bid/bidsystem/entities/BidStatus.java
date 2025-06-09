@@ -1,4 +1,4 @@
-package com.popcorntech.bidsystem.entities;
+package com.bid.bidsystem.entities;
 
 import jakarta.persistence.*;
 

@@ -1,4 +1,4 @@
-package com.popcorntech.bidsystem.util;
+package com.bid.bidsystem.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

@@ -9,17 +9,18 @@
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/grocery_db?useSSL=false</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">Sahan@200212010</property>
+        <property name="hibernate.connection.password">Lahiru@123</property>
 
         <!-- Hibernate settings -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="connection.pool_size">10</property>
 
-        <mapping class="com.popcorntech.bidsystem.entities.User"/>
-        <mapping class="com.popcorntech.bidsystem.entities.Product"/>
-        <mapping class="com.popcorntech.bidsystem.entities.ProductCategory"/>
-        <mapping class="com.popcorntech.bidsystem.entities.BidStatus"/>
-        <mapping class="com.popcorntech.bidsystem.entities.Bid"/>
+        <mapping class="com.bid.bidsystem.entities.User"/>
+        <mapping class="com.bid.bidsystem.entities.Product"/>
+        <mapping class="com.bid.bidsystem.entities.ProductCategory"/>
+        <mapping class="com.bid.bidsystem.entities.BidStatus"/>
+        <mapping class="com.bid.bidsystem.entities.Bid"/>
     </session-factory>
 </hibernate-configuration>

@@ -1,9 +1,9 @@
-package com.popcorntech.bidsystem.listener;
+package com.bid.bidsystem.listener;
 
 import jakarta.ejb.ActivationConfigProperty;
 import jakarta.ejb.MessageDriven;
 import jakarta.jms.*;
-import com.popcorntech.bidsystem.websocket.BidUpdateWebSocket;
+import com.bid.bidsystem.websocket.BidUpdateWebSocket;
 
 @MessageDriven(
         activationConfig = {

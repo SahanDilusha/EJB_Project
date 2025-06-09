@@ -1,6 +1,6 @@
-package com.popcorntech.bidsystem.sessions;
+package com.bid.bidsystem.sessions;
 
-import com.popcorntech.bidsystem.entities.User;
+import com.bid.bidsystem.entities.User;
 import jakarta.ejb.Stateful;
 
 import java.io.Serializable;

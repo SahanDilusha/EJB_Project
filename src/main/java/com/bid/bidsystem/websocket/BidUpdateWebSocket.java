@@ -1,4 +1,4 @@
-package com.popcorntech.bidsystem.websocket;
+package com.bid.bidsystem.websocket;
 
 import jakarta.websocket.OnClose;
 import jakarta.websocket.OnOpen;
