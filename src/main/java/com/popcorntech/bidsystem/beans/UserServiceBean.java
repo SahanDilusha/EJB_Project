@@ -19,26 +19,24 @@ public class UserServiceBean {
             newUser.setFull_name(fullName);
             session.save(newUser);
             session.beginTransaction().commit();
+            session.close();
             return newUser;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
+        } 
     }
 
-    public User loginUser(String email) {
+    public User loginUser(String email,String password) {
         Session session = null;
 
         try {
             session = HibernateUtil.getSessionFactory().openSession();
 
             User user = session.createQuery(
-                            "FROM User WHERE email = :email", User.class)
+                            "FROM User u WHERE u.email = :email AND u.password= :password", User.class)
                     .setParameter("email", email)
+                    .setParameter("password", password)
                     .uniqueResult();
 
             return user;
@@ -46,11 +44,7 @@ public class UserServiceBean {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
+        } 
     }
 
     public User getById(int id) {
@@ -66,11 +60,7 @@ public class UserServiceBean {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
+        } 
     }
 
 

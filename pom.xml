@@ -6,7 +6,7 @@
 
     <groupId>com.popcorntech.bidsystem</groupId>
     <artifactId>bidsystem</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>bidsystem</name>
     <packaging>war</packaging>
 

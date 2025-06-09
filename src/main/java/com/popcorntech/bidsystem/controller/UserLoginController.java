@@ -11,9 +11,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import com.popcorntech.bidsystem.beans.UserServiceBean;
 import com.popcorntech.bidsystem.entities.User;
-import com.popcorntech.bidsystem.models.Validation;
-
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 @WebServlet("/userLogin")
 public class UserLoginController extends HttpServlet {
@@ -43,22 +42,19 @@ public class UserLoginController extends HttpServlet {
                     jsonObject.addProperty("message", "Invalid email");
                 } else if (email.length() > 100) {
                     jsonObject.addProperty("message", "Invalid email");
-                } else if (!Validation.getInstance().validateEmail(email)) {
+                } else if (!Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$").matcher(email).find()) {
                     jsonObject.addProperty("message", "Invalid email");
                 } else if (password.isEmpty()) {
                     jsonObject.addProperty("message", "Invalid password");
-                } else if (!Validation.getInstance().validatePassword(password)) {
+                } else if (!Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$").matcher(email).find()) {
                     jsonObject.addProperty("message", "Invalid password");
                 }else {
-                    User user = userServiceBean.loginUser(email);
+                    User user = userServiceBean.loginUser(email,password);
                     if (user != null) {
-                        if (!Validation.getInstance().checkPassword(password, user.getPassword())) {
-                            jsonObject.addProperty("message", "Invalid email or password!");
-                        }else {
+
                             req.getSession().setAttribute("user", user);
                             userSessionBean.setUser(user);
                             jsonObject.addProperty("status", true);
-                        }
                     }else {
                         jsonObject.addProperty("message", "Invalid email or password!");
                     }

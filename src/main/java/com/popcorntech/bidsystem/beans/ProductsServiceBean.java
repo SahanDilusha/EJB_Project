@@ -23,6 +23,7 @@ public class ProductsServiceBean {
             product.setBidStatus(bidStatus);
             int id = (int) session.save(product);
             session.beginTransaction().commit();
+            session.close();
             product.setId(id);
             return product;
         } catch (Exception e) {
@@ -43,10 +44,6 @@ public class ProductsServiceBean {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
+        } 
     }
 }

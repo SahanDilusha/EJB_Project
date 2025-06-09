@@ -34,4 +34,13 @@
         <url-pattern>/single_product</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>BidManagement</servlet-name>
+        <jsp-file>/bid-management.html</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BidManagement</servlet-name>
+        <url-pattern>/bid-management</url-pattern>
+    </servlet-mapping>
+
 </web-app>

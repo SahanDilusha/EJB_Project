@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded",()=>{
             const result = await response.json();
             console.log(result);
             if (result.status) {
-                window.location.replace("/GroceryOrderSystem/");
+                window.location.replace("/bidsystem/");
             } else {
                 alert(result.message);
             }

@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-@ServerEndpoint("/bid_update_web_socket")
+@ServerEndpoint("/bid_update_web_socket_admin")
 public class BidUpdateWebSocket {
 
     private static final Set<Session> sessions = Collections.synchronizedSet(new HashSet<Session>());

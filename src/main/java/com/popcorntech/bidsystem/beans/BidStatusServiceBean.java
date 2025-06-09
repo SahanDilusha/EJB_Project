@@ -17,14 +17,11 @@ public class BidStatusServiceBean {
             int id = (int) session.save(bidStatus);
             session.beginTransaction().commit();
             bidStatus.setId(id);
+            session.close();
             return bidStatus;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
         }
     }
 
@@ -33,16 +30,12 @@ public class BidStatusServiceBean {
 
         try {
             session = HibernateUtil.getSessionFactory().openSession();
-
+            session.close();
             return session.get(BidStatus.class, id);
 
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
         }
 
     }

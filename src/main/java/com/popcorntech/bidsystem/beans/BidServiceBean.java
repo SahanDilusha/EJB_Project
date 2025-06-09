@@ -24,15 +24,11 @@ public class BidServiceBean {
             int id = (int) session.save(bid);
             session.beginTransaction().commit();
             bid.setId(id);
+            session.close();
             return bid;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
+            return null;}
     }
 
     public Bid getById(int bidId) {
@@ -40,14 +36,11 @@ public class BidServiceBean {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             Bid bid = (Bid) session.get(Bid.class, bidId);
+            session.close();
             return bid;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
         }
     }
 
@@ -64,14 +57,11 @@ public class BidServiceBean {
                     session.beginTransaction().commit();
                 }
             }
+            session.close();
             return null;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
         }
     }
 
@@ -87,10 +77,6 @@ public class BidServiceBean {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
         }
     }
 }

@@ -17,15 +17,12 @@ public class ProductCategoryServiceBean {
             int id = (int) session.save(productCategory);
             session.beginTransaction().commit();
             productCategory.setId(id);
+            session.close();
             return productCategory;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
+        } 
     }
 
     public ProductCategory getProductCategory(int id) {
@@ -36,10 +33,6 @@ public class ProductCategoryServiceBean {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
+        } 
     }
 }

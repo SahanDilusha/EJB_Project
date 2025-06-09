@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bid Management - Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+
+    <div class="toast-container position-static p-3" id="toastContainer">
+        <div class="toast" id="toast1" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg" class="rounded me-2" alt="Bootstrap" width="20">
+                <strong class="me-auto">Notification</strong>
+                <small class="text-body-secondary">just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toastMessage">
+            </div>
+        </div>
+
+    </div>
+
+    <h2 class="mb-4 text-center">Bid Management</h2>
+
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+        <tr>
+            <th>Bid ID</th>
+            <th>Product Name</th>
+            <th>Bidder Name</th>
+            <th>Bid Price</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>101</td>
+            <td>iPhone 15 Pro</td>
+            <td>John Doe</td>
+            <td>$1,200</td>
+            <td>
+                <button class="btn btn-danger btn-sm">Delete</button>
+            </td>
+        </tr>
+        <tr>
+            <td>102</td>
+            <td>Samsung TV</td>
+            <td>Jane Smith</td>
+            <td>$800</td>
+            <td>
+                <button class="btn btn-danger btn-sm">Delete</button>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/bid-management.js"></script>
+</body>
+</html>
+
+
+
